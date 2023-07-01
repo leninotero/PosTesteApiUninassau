@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
 import static org.hamcrest.Matchers.*;
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
@@ -21,7 +20,7 @@ class ServeRestTest {
     @Test
     @Order(1)
     public void testDadoEmailSenhaValidosQuandoFacoLoginEntaoValidoStatusCodeSucesso(){
-        baseURI = "https://serverest.dev";
+            baseURI = "https://serverest.dev";
 
         token = given()
                     .body("{\n" +
@@ -44,7 +43,7 @@ class ServeRestTest {
         idProduto = given()
                 .body("{\n" +
                         "    \"nome\": \"Base de Computador\",\n" +
-                        "    \"preco\": 1200,\n" +
+                        "    \"preco\": 200,\n" +
                         "    \"descricao\": \"Base para refrigeração de notebook\",\n" +
                         "    \"quantidade\": 50\n" +
                         "}")
@@ -69,12 +68,12 @@ class ServeRestTest {
             .then()
                 .statusCode(200)
                 .body("nome", equalTo("Base de Computador"))
-                .body("preco", equalTo(1200))
+                .body("preco", equalTo(200))
                 .body("descricao", equalTo("Base para refrigeração de notebook"))
                 .body("quantidade", equalTo(50))
-                .body("_id", equalTo(idProduto));
-//                .assertThat()
-//                    .body(matchesJsonSchemaInClasspath("products-schema.json"));
+                .body("_id", equalTo(idProduto))
+                .assertThat()
+                    .body(matchesJsonSchemaInClasspath("products-schema.json"));
     }
 
     @Test
@@ -84,7 +83,7 @@ class ServeRestTest {
                 .pathParam("id", idProduto)
                 .body("{\n" +
                         "    \"nome\": \"Base de Notebook\",\n" +
-                        "    \"preco\": 120,\n" +
+                        "    \"preco\": 200,\n" +
                         "    \"descricao\": \"Base para refrigeração de notebook\",\n" +
                         "    \"quantidade\": 50\n" +
                         "}")
