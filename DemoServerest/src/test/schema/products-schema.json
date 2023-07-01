@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+        "nome": {
+          "$ref": "#/definitions/nomeProduto1"
+        },
+        "preco": {
+          "$ref": "#/definitions/precoProduto1"
+        },
+        "descricao": {
+          "$ref": "#/definitions/descricaoProduto1"
+        },
+        "quantidade": {
+          "$ref": "#/definitions/quantidadeProduto1"
+        },
+        "_id": {
+          "$ref": "#/definitions/_idProduto1"
+        }
+      }
+}
